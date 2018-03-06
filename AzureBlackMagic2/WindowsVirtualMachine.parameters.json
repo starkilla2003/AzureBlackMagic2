@@ -23,6 +23,12 @@
     },
     "vmSize": {
       "value": "Standard_A2"
+    },
+    "sizeOfEachDataDiskInGB": {
+      "value": "100"
+    },
+    "dataDiskCount": {
+      "value":  2
     }
   }
 }

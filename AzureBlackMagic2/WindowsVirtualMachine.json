@@ -62,9 +62,11 @@
     },
     "dataDiskCount": {
       "type": "int",
-      "defaultValue": "1",
+      "defaultValue": 2,
+      "minValue": 1,
+      "maxValue": 64,
       "metadata": {
-        "description":  "Count of data disks"
+        "description": "Count of data disks"
       }
     },
     "windowsOSVersion": {
@@ -102,7 +104,11 @@
     "wadmetricsresourceid": "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]",
     "dscDCArchiveFolder": "DSC",
     "dscDCArchiveFileName": "dscDC.zip",
-    "diskCaching": "ReadWrite"
+    "diskCaching": "ReadWrite",
+    "dscIISArchiveFolder": "DSC",
+    "dscIISArchiveFileName": "dscIIS.zip",
+    "cseDiskScriptFolder": "CustomScripts",
+    "cseDiskScriptFileName": "cseDisk.ps1"
   },
   "resources": [
     {
@@ -232,7 +238,7 @@
                 "lun": "[copyIndex('dataDisks')]",
                 "name": "[concat(variables('vmName'), '-datadisk', copyIndex('dataDisks'))]",
                 "vhd": {
-                  "uri": "[uri(reference(concat('Microsoft.Storage/storageAccounts/', concat(variables('storageAccountName'), copyIndex())), '2017-06-01').primaryEndpoints.blob, concat('/vhds/', variables('vmName'), '-datadisk', copyIndex('dataDisks'), '.vhd'))]"
+                  "uri": "[uri(reference(concat('Microsoft.Storage/storageAccounts/', variables('vhdStorageAccountName')), '2017-06-01').primaryEndpoints.blob, concat('/vhds/', variables('vmName'), '-datadisk', copyIndex('dataDisks'), '.vhd'))]"
                 },
                 "createOption": "Empty"
               }
@@ -589,7 +595,31 @@
           }
         }
       }
-  }
+  },
+        {
+          "name": "cseDisk",
+          "type": "extensions",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2016-03-30",
+          "dependsOn": [
+            "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"
+          ],
+          "tags": {
+            "displayName": "cseDisk"
+          },
+          "properties": {
+            "publisher": "Microsoft.Compute",
+            "type": "CustomScriptExtension",
+            "typeHandlerVersion": "1.4",
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+              "fileUris": [
+                "[concat(parameters('_artifactsLocation'), '/', variables('cseDiskScriptFolder'), '/', variables('cseDiskScriptFileName'), parameters('_artifactsLocationSasToken'))]"
+              ],
+              "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('cseDiskScriptFolder'), '/', variables('cseDiskScriptFileName'))]"
+            }
+          }
+        }
       ]
     }
   ]
