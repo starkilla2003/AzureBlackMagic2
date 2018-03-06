@@ -1,0 +1,28 @@
+
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminPassword": {
+      "value": "P@ssw0rd123!"
+    },
+    "adminUsername": {
+      "value": "frank"
+    },
+    "dnsNameForPublicIP": {
+      "value": "blogdc01blackmagic"
+    },
+    "domainName": {
+      "value": "testblackmagic.com"
+    },
+    "dscDCUpdateTagVersion": {
+      "value": "2.0"
+    },
+    "windowsOSVersion": {
+      "value": "2012-R2-Datacenter"
+    },
+    "vmSize": {
+      "value": "Standard_A2"
+    }
+  }
+}

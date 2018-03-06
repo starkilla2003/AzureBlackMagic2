@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "AzureBlackMagic2", "AzureBlackMagic2\AzureBlackMagic2.deployproj", "{EA76C8FA-2850-453F-883A-B256E4B01813}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA76C8FA-2850-453F-883A-B256E4B01813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA76C8FA-2850-453F-883A-B256E4B01813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA76C8FA-2850-453F-883A-B256E4B01813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA76C8FA-2850-453F-883A-B256E4B01813}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5299EE29-7F24-4C7D-B4C4-7C3D8F0AAF16}
+	EndGlobalSection
+EndGlobal
