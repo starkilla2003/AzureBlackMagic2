@@ -228,7 +228,7 @@
               "count": "[parameters('dataDiskCount')]",
               "input": {
                 "caching": "[variables('diskCaching')]",
-                "diskSizeGB": "[variables('sizeOfEachDataDiskInGB')]",
+                "diskSizeGB": "[parameters('sizeOfEachDataDiskInGB')]",
                 "lun": "[copyIndex('dataDisks')]",
                 "name": "[concat(variables('vmName'), '-datadisk', copyIndex('dataDisks'))]",
                 "vhd": {
